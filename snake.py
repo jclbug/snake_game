@@ -91,4 +91,3 @@ class Snake:
         self.screen.onkey(self.moveRight, "Right")
         self.screen.listen()
 
-
