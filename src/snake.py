@@ -1,7 +1,10 @@
 import turtle as tim
-import food 
-import scoreBoard
-import utils
+import src.food as food 
+import src.scoreBoard as scoreBoard
+import src.utils as utils
+import os
+
+data_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "snake_data.txt"))
 
 
 class Snake:
@@ -12,7 +15,7 @@ class Snake:
         self.score = None
         self.snake_food = None
         self.screen = tim.Screen()
-        with open("snake_data.txt", "r") as file:
+        with open(data_file_path, "r") as file:
             self.highestScore = int(file.read())
             print(self.highestScore)
 

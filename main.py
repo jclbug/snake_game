@@ -1,10 +1,10 @@
-from snake import Snake
+from src.snake import Snake
 
 import turtle as t
 import tkinter as tk
 
 import time
-import utils
+import src.utils as utils
 
 root = tk.Tk()
 snake = Snake()

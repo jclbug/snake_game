@@ -1,8 +1,12 @@
 import turtle as scoreTim
+import os
+
+data_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "snake_data.txt"))
+
 
 class ScoreBoard:
     def __init__(self):
-        with open("snake_data.txt", "r") as file:
+        with open(data_file_path, "r") as file:
             self.highestScore = int(file.read())
         self.score = 0
         self.score_turtle = scoreTim.Turtle()
@@ -22,7 +26,7 @@ class ScoreBoard:
             self.createScoreBoard(self.highestScore, "Highest Score: ", [200, 270])
         else:
             self.createScoreBoard(self.score, "Highest Score: ", [200, 270])
-            with open("snake_data.txt", "w") as file:
+            with open(data_file_path, "w") as file:
                 file.write(f"{self.score}")
         
 
