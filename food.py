@@ -8,7 +8,7 @@ class Food:
         rand_y = random.randint(-280, 280)
 
         self.new_tim = tim.Turtle("circle")
-        self.new_tim.color("red")
+        self.new_tim.color("#f03e3e")
         self.new_tim.shapesize(0.5, 0.5)
         self.new_tim.penup()
         self.new_tim.goto(rand_x, rand_y)

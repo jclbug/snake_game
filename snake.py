@@ -3,6 +3,7 @@ import food
 import scoreBoard
 import utils
 
+
 class Snake:
     new_food = food.Food()
     def __init__(self):
@@ -11,6 +12,9 @@ class Snake:
         self.score = None
         self.snake_food = None
         self.screen = tim.Screen()
+        with open("snake_data.txt", "r") as file:
+            self.highestScore = int(file.read())
+            print(self.highestScore)
 
     def snake_direction(self, setMoveDirection, checkDirection):
         if(int(self.turtles[0].heading()) != checkDirection):
@@ -18,7 +22,7 @@ class Snake:
 
     def snakePart(self):
         new_turtle = tim.Turtle("square")
-        new_turtle.color("white")
+        new_turtle.color("#51cf66")
         new_turtle.shapesize(0.7,0.7)
         new_turtle.penup()
         return new_turtle
@@ -31,6 +35,7 @@ class Snake:
     def initialSnake(self):
         for i in range(3):
             self.createSnake(self.initialCoord[i])
+        self.turtles[0].shape("circle")
 
     def getHead(self):
         return self.turtles[0]
@@ -75,19 +80,19 @@ class Snake:
             self.extendSnake()
 
     def startGame(self):
+        self.screen.tracer(0)
         self.turtles = []
         self.snake_food = self.new_food.createFood()
         self.screen.setup(width=600, height=600)
         self.initialSnake()
         self.screen.title("Python Game using Python")
         self.score = scoreBoard.ScoreBoard()
-        self.score.createScoreBoard()
+        self.score.createScoreBoard(0, "Score: ", [-250, 270])
+        self.score.createScoreBoard(self.highestScore, "Highest Score: ", [200, 270])
         self.screen.bgcolor("black")
-        self.screen.tracer(0)
         
+        self.screen.listen()
         self.screen.onkey(self.moveUp, "Up")
         self.screen.onkey(self.moveDown, "Down")
         self.screen.onkey(self.moveLeft, "Left")
         self.screen.onkey(self.moveRight, "Right")
-        self.screen.listen()
-
