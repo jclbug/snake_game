@@ -1,15 +1,9 @@
 from src.snake import Snake
-
 import turtle as t
-import tkinter as tk
-
 import time
 import src.utils as utils
 
-root = tk.Tk()
 snake = Snake()
-
-root.withdraw()
 
 screen = t.Screen()
 snake.startGame()

@@ -4,7 +4,8 @@ import src.scoreBoard as scoreBoard
 import src.utils as utils
 import os
 
-data_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "snake_data.txt"))
+home = os.path.expanduser("~")
+data_file_path = os.path.join(home, "snake_game_highscore.txt")
 
 
 class Snake:
@@ -15,6 +16,12 @@ class Snake:
         self.score = None
         self.snake_food = None
         self.screen = tim.Screen()
+        home = os.path.expanduser("~")
+        data_file_path = os.path.join(home, "snake_game_highscore.txt")
+
+        if not os.path.exists(data_file_path):
+            with open(data_file_path, "w") as file:
+                file.write("0")
         with open(data_file_path, "r") as file:
             self.highestScore = int(file.read())
             print(self.highestScore)
@@ -52,9 +59,10 @@ class Snake:
 
     def self_collision(self, turtle):
         head = self.getHead()
-        for i in range(6, len(self.turtles)-1):
+        for i in range(4, len(self.turtles) - 1):
             if (head.distance(self.turtles[i]) < 10):
                 utils.promptPlayAgain(turtle, self)
+                break
                         
     def moveUp(self):
         self.snake_direction(90, 270)
@@ -83,6 +91,7 @@ class Snake:
             self.extendSnake()
 
     def startGame(self):
+        highestScore = 0
         self.screen.tracer(0)
         self.turtles = []
         self.snake_food = self.new_food.createFood()
@@ -91,7 +100,9 @@ class Snake:
         self.screen.title("Python Game using Python")
         self.score = scoreBoard.ScoreBoard()
         self.score.createScoreBoard(0, "Score: ", [-250, 270])
-        self.score.createScoreBoard(self.highestScore, "Highest Score: ", [200, 270])
+        with open(data_file_path, "r") as file:
+            highestScore = int(file.read())
+        self.score.createScoreBoard(highestScore, "Highest Score: ", [200, 270])
         self.screen.bgcolor("black")
         
         self.screen.listen()

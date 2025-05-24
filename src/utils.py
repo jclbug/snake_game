@@ -1,3 +1,4 @@
+import sys
 from tkinter import messagebox
 
 def promptPlayAgain(turtle, snakeObject):    
@@ -6,4 +7,4 @@ def promptPlayAgain(turtle, snakeObject):
         turtle.clearscreen()
         snakeObject.startGame()
     else: 
-        exit()
+        sys.exit()

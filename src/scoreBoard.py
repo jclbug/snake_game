@@ -1,11 +1,15 @@
 import turtle as scoreTim
 import os
 
-data_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data", "snake_data.txt"))
+home = os.path.expanduser("~")
+data_file_path = os.path.join(home, "snake_game_highscore.txt")
 
 
 class ScoreBoard:
     def __init__(self):
+        if not os.path.exists(data_file_path):
+            with open(data_file_path, "w") as file:
+                file.write("0")
         with open(data_file_path, "r") as file:
             self.highestScore = int(file.read())
         self.score = 0
