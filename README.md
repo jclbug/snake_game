@@ -23,6 +23,8 @@ A classic Snake game built using **Python** and the **turtle** graphics library!
 
 ## Use the provided Python_game.exe file:
 
+Download the Python_game.exe file.
+
 Just double-click on the .exe file.
 
 The game will launch immediately — no Python installation or setup required!
